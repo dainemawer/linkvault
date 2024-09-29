@@ -2,26 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.cl-userButtonPopoverFooter {
+  display: none !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.cl-userButtonPopoverCard  {
+  top: 62px !important;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.cl-internal-df7v37 {
+  display: none !important;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.cl-internal-13u79ez {
+  background: none !important;
+}
+
+[data-radix-popper-content-wrapper] {
+  top: 0.875rem !important;
 }
