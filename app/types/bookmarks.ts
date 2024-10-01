@@ -21,6 +21,7 @@ export interface BookmarkContextType {
   deleteBookmark: (id: number) => Promise<void>;
   setFavouriteBookmark: (id: number, favourite: boolean) => Promise<void>;
   setMarkAsRead: (id: number, status: string) => Promise<void>;
+  getBookmarksPerDay: () => { date: string; bookmarks: number }[];
   loading: boolean;
   error: string | null;
 }

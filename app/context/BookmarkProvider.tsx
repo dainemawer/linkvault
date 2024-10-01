@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { createContext, useState, ReactNode } from "react";
 import { createClerkSupabaseClient } from "@/app/supabase/client";
 import { useAuth } from "@clerk/nextjs";
@@ -118,6 +118,26 @@ export const BookmarkProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const getBookmarksPerDay = useMemo(() => {
+    const bookmarkCounts: { [key: string]: number } = {};
+
+    bookmarks.forEach((bookmark) => {
+      const date = bookmark.date
+        ? new Date(bookmark.date).toISOString().split("T")[0]
+        : null;
+
+      if (date) {
+        bookmarkCounts[date] = (bookmarkCounts[date] || 0) + 1;
+      }
+    });
+
+    // Convert to an array of objects
+    return Object.entries(bookmarkCounts).map(([date, count]) => ({
+      date,
+      bookmarks: count,
+    }));
+  }, [bookmarks]);
+
   useEffect(() => {
     fetchBookmarks();
   }, [fetchBookmarks]);
@@ -132,6 +152,7 @@ export const BookmarkProvider = ({ children }: { children: ReactNode }) => {
         deleteBookmark,
         setFavouriteBookmark,
         setMarkAsRead,
+        getBookmarksPerDay: () => getBookmarksPerDay,
         loading,
         error,
       }}
