@@ -4,7 +4,7 @@ const Hero = dynamic(() => import("@/app/components/hero"), {
   ssr: true,
 });
 
-const Overview = dynamic(() => import("@/app/components/overview"), {
+const Graph = dynamic(() => import("@/app/components/graph"), {
   ssr: false,
 });
 
@@ -16,7 +16,7 @@ export default async function InboxPage() {
   return (
     <>
       <Hero title="Inbox" description="Recently added bookmarks" />
-      <Overview />
+      <Graph />
       <Bookmarks enableAdvancedFilters={false} status="inbox" />
     </>
   );
